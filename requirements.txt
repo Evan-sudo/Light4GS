@@ -11,3 +11,4 @@ open3d
 imageio[ffmpeg]
 compressai
 icecream
+tqdm
