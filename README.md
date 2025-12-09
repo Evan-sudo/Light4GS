@@ -98,11 +98,11 @@ python scripts/downsample_point.py data/hypernerf/virg/broom2/colmap/dense/works
 python train.py -s  data/hypernerf/virg/broom2/ --port 6017 --expname "hypernerf/broom2" --configs arguments/hypernerf/broom2.py 
 ```
 
+
+## ⏰ Compression
 <p align="center">
   <img src="assets/RDO.png" alt="Rate–distortion comparison" width="800">
 </p>
-
-## ⏰ Compression
 We employ STP to prune deformable Gaussian primitives, with the pruning iteration set to [13000, 17000] by default.  
 
 HEXPLANE is compressed using a Multiscale Hexplane Context Model, implemented on top of [CompressAI](https://github.com/InterDigitalInc/CompressAI), where an entropy constraint is applied every 3 iterations.  
