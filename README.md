@@ -8,10 +8,9 @@ Mufan Liu¹, Qi Yang², He Huang¹, Wenjie Huang¹, Zhenlong Yuan³, Zhu Li², Y
 
 Contact: sudo_evan@sjtu.edu.cn
 
-
-<object data="assets/pipeline.pdf" type="application/pdf" width="100%" height="600px">
-  <embed src="assets/pipeline.pdf" type="application/pdf" />
-</object>
+<p align="center">
+  <img src="assets/pipeline.png" alt="Light4GS pipeline" width="600">
+</p>
 
 ## 🏠 Environmental Setups
 
