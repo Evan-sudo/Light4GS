@@ -103,13 +103,15 @@ python train.py -s  data/hypernerf/virg/broom2/ --port 6017 --expname "hypernerf
 <p align="center">
   <img src="assets/RDO.png" alt="Rate–distortion comparison" width="800">
 </p>
-We employ STP to prune deformable Gaussian primitives, with the pruning iteration set to [13000, 17000] by default.  
 
-HEXPLANE is compressed using a Multiscale Hexplane Context Model, implemented on top of [CompressAI](https://github.com/InterDigitalInc/CompressAI), where an entropy constraint is applied every 3 iterations.  
+### 🌟 Feature compression:
+HEXPLANE is compressed using our context model, implemented on top of [CompressAI](https://github.com/InterDigitalInc/CompressAI), where an entropy constraint is applied every 3 iterations.  
 
-The AC components of the SH coefficients are compressed with a fully factorized entropy model, and likewise use an entropy constraint every 3 iterations.  
-
+### 🌟 GS compression:
+- We utimize spatio-temporal rendering significance to prune deformable Gaussian primitives, with the pruning iteration set to [13000, 17000] by default.  
+- The AC components of the SH coefficients are compressed with a fully factorized entropy model, and likewise use an entropy constraint every 3 iterations.  
 
 Compression and decompression are evaluated every 10,000 iterations.  
 
-The model-saving iteration should include the final training iteration, which stores the decoded 4DGS model. This decoded model is identical to the one in [4DGS](https://github.com/hustvl/4DGaussians), so you can directly use the original 4DGS scripts for rendering, FPS measurement, and metric evaluation.
+### 🌟 Validation and Evaluation:
+The model-saving iteration should include the **final training iteration**, which stores the decoded 4DGS model. This decoded model is identical to the one in [4DGS](https://github.com/hustvl/4DGaussians), so you can directly use the original 4DGS scripts for rendering, FPS measurement, and metric evaluation.
