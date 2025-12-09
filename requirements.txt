@@ -10,3 +10,4 @@ pytorch_msssim
 open3d
 imageio[ffmpeg]
 compressai
+icecream
