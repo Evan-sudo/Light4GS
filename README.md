@@ -94,18 +94,3 @@ python scripts/downsample_point.py data/hypernerf/virg/broom2/colmap/dense/works
 python train.py -s  data/hypernerf/virg/broom2/ --port 6017 --expname "hypernerf/broom2" --configs arguments/hypernerf/broom2.py 
 ```
 
-For training multipleviews scenes,you are supposed to build a configuration file named (you dataset name).py under "./arguments/mutipleview",after that,run
-```python
-python train.py -s  data/multipleview/(your dataset name) --port 6017 --expname "multipleview/(your dataset name)" --configs arguments/multipleview/(you dataset name).py 
-```
-
-For your custom datasets, install nerfstudio and follow their [COLMAP](https://colmap.github.io/) pipeline. You should install COLMAP at first, then:
-
-```python
-pip install nerfstudio
-# computing camera poses by colmap pipeline
-ns-process-data images --data data/your-data --output-dir data/your-ns-data
-cp -r data/your-ns-data/images data/your-ns-data/colmap/images
-python train.py -s data/your-ns-data/colmap --port 6017 --expname "custom" --configs arguments/hypernerf/default.py 
-```
-You can customize your training config through the config files.
