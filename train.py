@@ -461,9 +461,6 @@ def scene_reconstruction(dataset, opt, hyper, pipe, testing_iterations, saving_i
                 [pipe, background], stage, scene.dataset_type
             )
 
-            if iteration in saving_iterations:
-                print("\n[ITER {}] Saving Gaussians".format(iteration))
-                scene.save(iteration, stage)
                 
             if dataset.render_process:
                 if (iteration < 1000 and iteration % 10 == 9) \
@@ -615,6 +612,10 @@ def scene_reconstruction(dataset, opt, hyper, pipe, testing_iterations, saving_i
                     bit_info,
                     Q_hex=gaussians._deformation.deformation_net.grid.Q,
                 )
+
+            if iteration in saving_iterations:
+                print("\n[ITER {}] Saving Gaussians".format(iteration))
+                scene.save(iteration, stage)
 
 
 def training(dataset, hyper, opt, pipe, testing_iterations, saving_iterations,
@@ -775,7 +776,7 @@ if __name__ == "__main__":
     parser.add_argument("--test_iterations", nargs="+", type=int,
                         default=[3000, 10000, 20000, 25000, 30000])
     parser.add_argument("--save_iterations", nargs="+", type=int,
-                        default=[14000, 20000, 25000, 30000])
+                        default=[20000, 25000, 30000])
     parser.add_argument("--quiet", action="store_true")
     parser.add_argument("--checkpoint_iterations", nargs="+", type=int, default=[])
     parser.add_argument("--start_checkpoint", type=str, default=None)
