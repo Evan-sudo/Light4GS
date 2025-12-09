@@ -69,10 +69,9 @@ class CheckerboardAutoregressive(JointAutoregressiveHierarchicalPriors):
         )
 
         # cross-plane / cross-scale context -> 变成 (2M) 作为高斯参数基础
-        # 低层 space-only: 用 XT/YT/ZT 的 context_map 拼起来
-        # 高层: 用 lower scale y_hat 上采样后拼起来
+        # !!! 修改 1：in_channels 从 2M 改成 M，out_channels 还是 2M
         self.context_to_params = nn.Conv2d(
-            in_channels=2 * M,
+            in_channels=M,
             out_channels=2 * M,
             kernel_size=5,
             padding=2,
@@ -224,7 +223,12 @@ class CheckerboardAutoregressive(JointAutoregressiveHierarchicalPriors):
         context_planes = self._build_spaceonly_context_maps(
             y_plane=y, ctx_src_planes=ctx_src_planes
         )
-        scale_context = torch.cat(context_planes, dim=1)  # [N,2M,H,W]
+        # !!! 修改 2：两张 plane 先做平均，得到 [N,M,H,W]，再喂给 context_to_params
+        if len(context_planes) == 1:
+            scale_context = context_planes[0]          # [N,M,H,W]
+        else:
+            scale_context = sum(context_planes) / len(context_planes)
+
         params_base = self.context_to_params(scale_context)  # [N,2M,H,W]
 
         z_lkl = torch.empty(0, device=device)
@@ -258,7 +262,8 @@ class CheckerboardAutoregressive(JointAutoregressiveHierarchicalPriors):
             lower_plane, grid, mode="bilinear", align_corners=True
         )  # [N,M,H_cur,W_cur]
 
-        scale_context = torch.cat([ctx_up, ctx_up], dim=1)  # [N,2M,H,W]
+        # !!! 修改 3：inter-scale 直接用 M 通道的 ctx_up
+        scale_context = ctx_up                      # [N,M,H,W]
         ctx_params = self.context_to_params(scale_context)   # [N,2M,H,W]
 
         # hyper + ctx -> 高斯参数
@@ -575,7 +580,12 @@ class CheckerboardAutoregressive(JointAutoregressiveHierarchicalPriors):
         context_planes = self._build_spaceonly_context_maps(
             y_plane=y, ctx_src_planes=ctx_src_planes
         )
-        scale_context = torch.cat(context_planes, dim=1)  # [1,2M,H,W]
+        # !!! 修改 4：这里也做平均，保证和 forward / decompress 一致
+        if len(context_planes) == 1:
+            scale_context = context_planes[0]
+        else:
+            scale_context = sum(context_planes) / len(context_planes)
+
         params_base = self.context_to_params(scale_context)
 
         anchor_strings, non_anchor_strings = self._checkerboard_compress_core(
@@ -598,7 +608,12 @@ class CheckerboardAutoregressive(JointAutoregressiveHierarchicalPriors):
         context_planes = self._build_spaceonly_context_maps(
             y_plane=dummy_y, ctx_src_planes=ctx_src_planes
         )
-        scale_context = torch.cat(context_planes, dim=1)  # [1,2M,H,W]
+        # !!! 修改 5：同样用平均，保持对称性
+        if len(context_planes) == 1:
+            scale_context = context_planes[0]
+        else:
+            scale_context = sum(context_planes) / len(context_planes)
+
         params_base = self.context_to_params(scale_context)
 
         y_hat = self._checkerboard_decompress_core(
@@ -632,10 +647,10 @@ class CheckerboardAutoregressive(JointAutoregressiveHierarchicalPriors):
             lower_hat, grid, mode="bilinear", align_corners=True
         )  # [1,M,H_cur,W_cur]
 
-        scale_context = torch.cat([ctx_up, ctx_up], dim=1)  # [1,2M,H,W]
+        # !!! 修改 6：直接用 ctx_up 当 context
+        scale_context = ctx_up                      # [1,M,H,W]
         ctx_params = self.context_to_params(scale_context)
 
-        zeros = torch.zeros_like(hyper_params)
         gaussian_params = self.entropy_parameters(
             torch.cat([hyper_params, ctx_params], dim=1)
         )
@@ -663,7 +678,7 @@ class CheckerboardAutoregressive(JointAutoregressiveHierarchicalPriors):
             lower_hat, grid, mode="bilinear", align_corners=True
         )
 
-        scale_context = torch.cat([ctx_up, ctx_up], dim=1)
+        scale_context = ctx_up                      # [1,M,H,W]
         ctx_params = self.context_to_params(scale_context)
 
         gaussian_params = self.entropy_parameters(
@@ -937,84 +952,3 @@ def build_hexplanes_combo_multiscale(
         ]
         hexplanes.append(planes)
     return hexplanes
-
-
-# ========================== 简单验证函数 ==========================
-
-@torch.no_grad()
-def validate():
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-
-    C = 32      # 每个平面 channel 数
-    M = C       # latent 通道
-    N = C       # hyperprior 通道
-
-    model = CheckerboardAutoregressive(N=N, M=M).to(device)
-    model.eval()
-    model.update()  # 初始化熵模型 CDF（gaussian_conditional / entropy_bottleneck）
-
-    baseX = baseY = baseZ = 64
-    baseT = 76
-    num_scales = 3
-
-    hexplanes = build_hexplanes_combo_multiscale(
-        C=C,
-        baseX=baseX,
-        baseY=baseY,
-        baseZ=baseZ,
-        baseT=baseT,
-        num_scales=num_scales,
-        device=device,
-    )
-
-    Q = 0.01
-
-    # 1) 理论 bits（forward + likelihood）
-    print("==== Bit estimation via forward (calculate_hexplane_bits) ====")
-    est_stats = model.calculate_hexplane_bits(hexplanes, Q=Q)
-    est_bits = est_stats["total_bits"].item()
-    est_bpp  = est_stats["bpp"].item()
-    print(f"Est. total bits = {est_bits:.1f},  est. bpp = {est_bpp:.6f}")
-
-    # 2) 实际压缩
-    print("\n==== Start entropy_compress ====")
-    packed = model.entropy_compress(hexplanes, Q=Q)
-    real_bits = packed["total_bits"]
-    real_bpp  = packed["bpp"]
-    print(f"Real total bits = {real_bits:.1f},  real bpp = {real_bpp:.6f}")
-
-    if real_bits > 0:
-        ratio = est_bits / real_bits
-        print(f"\nEst / Real bits ratio = {ratio:.4f}")
-
-    # 3) 解码 + MSE
-    print("\n==== Start entropy_decompress ====")
-    decoded = model.entropy_decompress(packed, device=device)
-
-    print("\n==== Per-scale / per-plane reconstruction MSE ====")
-    for i in range(num_scales):
-        for j in range(6):
-            x = hexplanes[i][j]
-            x_hat = decoded[i][j]
-            mse = torch.mean((x_hat - x) ** 2).item()
-            print(
-                f"Scale {i}, Plane {j}: "
-                f"shape={list(x.shape)}, MSE={mse:.4e}"
-            )
-
-    all_mse = []
-    for i in range(num_scales):
-        for j in range(6):
-            x = hexplanes[i][j]
-            x_hat = decoded[i][j]
-            all_mse.append(torch.mean((x_hat - x) ** 2))
-    all_mse = torch.stack(all_mse).mean().item()
-    print(f"\nGlobal average MSE over all scales/planes = {all_mse:.4e}")
-
-
-if __name__ == "__main__":
-    validate()
-
-
-
-
