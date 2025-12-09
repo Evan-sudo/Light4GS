@@ -42,11 +42,11 @@ The dataset provided in [HyperNeRF](https://github.com/google/hypernerf) and [Ne
 │     ├── mutant
 │     ├── standup 
 │     ├── ...
-│   | hypernerf
+│   | hypernerf (NeRF-DS)
 │     ├── interp
 │     ├── misc
 │     ├── virg
-│   | dynerf
+│   | dynerf 
 │     ├── cook_spinach
 │       ├── cam00
 │           ├── images
