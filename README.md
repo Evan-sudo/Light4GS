@@ -14,10 +14,10 @@ Contact: sudo_evan@sjtu.edu.cn
 Please follow the [3D-GS](https://github.com/graphdeco-inria/gaussian-splatting) to install the relative packages.
 
 ```bash
-git clone https://github.com/hustvl/4DGaussians
-cd 4DGaussians
+git clone [https://github.com/Evan-sudo/Light4GS]
+cd Light4GS
 git submodule update --init --recursive
-conda create -n Gaussians4D python=3.7 
+conda create -n Light4GS python=3.7 
 conda activate Gaussians4D
 
 pip install -r requirements.txt
