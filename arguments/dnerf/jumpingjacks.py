@@ -6,6 +6,6 @@ ModelHiddenParams = dict(
      'input_coordinate_dim': 4,
      'output_coordinate_dim': 32,
     #  'output_coordinate_dim': 8,  # modified by evan
-     'resolution': [64, 64, 64, 100]
+     'resolution': [64, 64, 64, 48]
     }
 )
