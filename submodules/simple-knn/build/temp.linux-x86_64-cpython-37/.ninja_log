@@ -1,0 +1,4 @@
+# ninja log v5
+0	12681	1722055467	/home/gaussian4d/workspace/4DGaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-37/simple_knn.o	e00fa695cf4d82db
+0	27116	1722055482	/home/gaussian4d/workspace/4DGaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-37/ext.o	c9f24ff6329c9489
+1	52310	1722055507	/home/gaussian4d/workspace/4DGaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-37/spatial.o	97bfe9026ee420f1
