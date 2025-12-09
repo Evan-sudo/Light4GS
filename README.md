@@ -11,6 +11,7 @@ Contact: sudo_evan@sjtu.edu.cn
 <p align="center">
   <img src="assets/pipeline.png" alt="Light4GS pipeline" width="800">
 </p>
+Overview of Light4GS architecture.
 
 ## 🏠 Environmental Setups
 
