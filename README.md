@@ -18,7 +18,7 @@ git clone https://github.com/Evan-sudo/Light4GS
 cd Light4GS
 git submodule update --init --recursive
 conda create -n Light4GS python=3.7 
-conda activate Gaussians4D
+conda activate Light4GS
 
 pip install -r requirements.txt
 pip install -e submodules/depth-diff-gaussian-rasterization
