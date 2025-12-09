@@ -36,6 +36,9 @@ We modified the "diff-gaussian-rasterization" in the submodule following [LightG
 The dataset provided in [D-NeRF](https://github.com/albertpumarola/D-NeRF) is used. You can download the dataset from [dropbox](https://www.dropbox.com/s/0bf6fl0ye2vz3vr/data.zip?dl=0).
 
 **For real dynamic scenes:**
+1️⃣ Multiview dataset:
+The dataset provided in [DyNeRF](https://github.com/facebookresearch/Neural_3D_Video) is used. 
+2️⃣ Monocular dataset:
 The dataset provided in [HyperNeRF](https://github.com/google/hypernerf) and [NeRF-DS](https://github.com/JokerYan/NeRF-DS) is used. You can download scenes from [Hypernerf Dataset](https://github.com/google/hypernerf/releases/tag/v0.1) & [NeRF-DS Dataset](https://github.com/JokerYan/NeRF-DS/releases/tag/v0.1-pre-release) and organize them as [Nerfies](https://github.com/google/nerfies#datasets). 
 
 
@@ -126,7 +129,7 @@ If you find our work helpful, please cite:
       year    = {2025}
     }
 
-Also see our coarse-to-fine compression solution for 4DGS:
+Also see our coarse-to-fine compression solution for 4DGS [ADC-GS](https://github.com/H-Huang774/ADC-GS):
 
     @inproceedings{huang2025adcgs,
       title     = {ADC-GS: Anchor-Driven Deformable and Compressed Gaussian Splatting for Dynamic Scene Reconstruction},
@@ -135,4 +138,3 @@ Also see our coarse-to-fine compression solution for 4DGS:
       year      = {2025}
     }
 
-[ADC-GS](https://github.com/H-Huang774/ADC-GS)
