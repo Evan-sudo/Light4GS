@@ -65,6 +65,7 @@ The dataset provided in [HyperNeRF](https://github.com/google/hypernerf) and [Ne
 
 ## Training
 
+The training of Light4GS follows the implementation of the paper [4DGS](https://github.com/hustvl/4DGaussians).
 For training synthetic scenes such as `bouncingballs`, run
 
 ```
