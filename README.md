@@ -9,7 +9,7 @@ Mufan Liu¹, Qi Yang², He Huang¹, Wenjie Huang¹, Zhenlong Yuan³, Zhu Li², Y
 Contact: sudo_evan@sjtu.edu.cn
 
 
-## Environmental Setups
+## 🏠 Environmental Setups
 
 Please follow the [3D-GS](https://github.com/graphdeco-inria/gaussian-splatting) to install the relative packages.
 
@@ -26,7 +26,7 @@ pip install -e submodules/simple-knn
 
 We modified the "diff-gaussian-rasterization" in the submodule following [LightGaussian](https://github.com/VITA-Group/LightGaussian/) to get the Global Significant Score. In our environment, we use pytorch=1.13.1+cu116.
 
-## Data Preparation
+## 📚 Data Preparation
 
 **For synthetic scenes:**
 The dataset provided in [D-NeRF](https://github.com/albertpumarola/D-NeRF) is used. You can download the dataset from [dropbox](https://www.dropbox.com/s/0bf6fl0ye2vz3vr/data.zip?dl=0).
@@ -64,7 +64,7 @@ The dataset provided in [HyperNeRF](https://github.com/google/hypernerf) and [Ne
 ### !Note:
 To ensure valid masked convolution under the checkerboard context, we set all HexPlane dimensions to be multiples of 4. Note that the pruning iteration should also be later than the iteration at which the Gaussians stop densifying.
 
-## Training
+## 🚀 Training
 
 The training of Light4GS follows the implementation of the paper [4DGS](https://github.com/hustvl/4DGaussians).
 For training synthetic scenes such as `bouncingballs`, run
@@ -95,4 +95,4 @@ python scripts/downsample_point.py data/hypernerf/virg/broom2/colmap/dense/works
 # Finally, train.
 python train.py -s  data/hypernerf/virg/broom2/ --port 6017 --expname "hypernerf/broom2" --configs arguments/hypernerf/broom2.py 
 ```
-
+## ⏰ Compression
