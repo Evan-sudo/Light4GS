@@ -63,49 +63,6 @@ The dataset provided in [HyperNeRF](https://github.com/google/hypernerf) and [Ne
 |     ├── ...
 ```
 
-**For multipleviews scenes:**
-If you want to train your own dataset of multipleviews scenes, you can orginize your dataset as follows:
-
-```
-├── data
-|   | multipleview
-│     | (your dataset name) 
-│   	  | cam01
-|     		  ├── frame_00001.jpg
-│     		  ├── frame_00002.jpg
-│     		  ├── ...
-│   	  | cam02
-│     		  ├── frame_00001.jpg
-│     		  ├── frame_00002.jpg
-│     		  ├── ...
-│   	  | ...
-```
-After that, you can use the  `multipleviewprogress.sh` we provided to generate related data of poses and pointcloud.You can use it as follows:
-```bash
-bash multipleviewprogress.sh (youe dataset name)
-```
-You need to ensure that the data folder is organized as follows after running multipleviewprogress.sh:
-```
-├── data
-|   | multipleview
-│     | (your dataset name) 
-│   	  | cam01
-|     		  ├── frame_00001.jpg
-│     		  ├── frame_00002.jpg
-│     		  ├── ...
-│   	  | cam02
-│     		  ├── frame_00001.jpg
-│     		  ├── frame_00002.jpg
-│     		  ├── ...
-│   	  | ...
-│   	  | sparse_
-│     		  ├── cameras.bin
-│     		  ├── images.bin
-│     		  ├── ...
-│   	  | points3D_multipleview.ply
-│   	  | poses_bounds_multipleview.npy
-```
-
 ## Training
 
 For training synthetic scenes such as `bouncingballs`, run
