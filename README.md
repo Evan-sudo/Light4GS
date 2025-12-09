@@ -6,7 +6,7 @@ Mufan Liu¹, Qi Yang², He Huang¹, Wenjie Huang¹, Zhenlong Yuan³, Zhu Li², Y
 ² University of Missouri, Kansas City  
 ³ University of Chinese Academy of Sciences  
 
-Contact: {sudo_evan, huanghe0429, huangwenjie2023, yl.xu}@sjtu.edu.cn, {qiyang, lizhu}@umkc.edu, yuanzhenlong21b@ict.ac.cn
+Contact: sudo_evan@sjtu.edu.cn
 
 
 ## Environmental Setups
