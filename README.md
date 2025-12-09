@@ -115,3 +115,24 @@ Compression and decompression are evaluated every 10,000 iterations.
 
 ### 🌟 Validation and Evaluation:
 The model-saving iteration should include the **final training iteration**, which stores the decoded 4DGS model. This decoded model is identical to the one in [4DGS](https://github.com/hustvl/4DGaussians), so you can directly use the original 4DGS scripts for rendering, FPS measurement, and metric evaluation.
+
+## 💻 Citation
+If you find our work helpful, please cite:
+
+    @article{liu2025light4gs,
+      title   = {Light4GS: Lightweight Compact 4D Gaussian Splatting Generation via Context Model},
+      author  = {Liu, Mufan and Yang, Qi and Huang, He and Huang, Wenjie and Yuan, Zhenlong and Li, Zhu and Xu, Yiling},
+      journal = {arXiv preprint arXiv:2503.13948},
+      year    = {2025}
+    }
+
+Also see our coarse-to-fine compression solution for 4DGS:
+
+    @inproceedings{huang2025adcgs,
+      title     = {ADC-GS: Anchor-Driven Deformable and Compressed Gaussian Splatting for Dynamic Scene Reconstruction},
+      author    = {Huang, He and Yang, Qi and Liu, Mufan and Xu, Yiling and Li, Zhu},
+      booktitle = {Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence (IJCAI)},
+      year      = {2025}
+    }
+
+[ADC-GS](https://github.com/H-Huang774/ADC-GS)
