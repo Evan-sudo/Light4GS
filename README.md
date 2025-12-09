@@ -50,7 +50,7 @@ The dataset provided in [HyperNeRF](https://github.com/google/hypernerf) and [Ne
 │     ├── mutant
 │     ├── standup 
 │     ├── ...
-│   | hypernerf (NeRF-DS)
+│   | hypernerf / NeRF-DS
 │     ├── virg
 │   | dynerf 
 │     ├── cook_spinach
