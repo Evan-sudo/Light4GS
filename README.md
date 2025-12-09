@@ -38,7 +38,7 @@ The dataset provided in [D-NeRF](https://github.com/albertpumarola/D-NeRF) is us
 **For real dynamic scenes:**
 
 1️⃣ Multiview dataset:
-The dataset provided in [DyNeRF](https://github.com/facebookresearch/Neural_3D_Video) is used. 
+The dataset provided in [DyNeRF]([https://github.com/facebookresearch/Neural_3D_Video](https://arxiv.org/pdf/2103.02597)) is used. You can download scenes from [Neu3D](https://github.com/facebookresearch/Neural_3D_Video).
 
 2️⃣ Monocular dataset:
 The dataset provided in [HyperNeRF](https://github.com/google/hypernerf) and [NeRF-DS](https://github.com/JokerYan/NeRF-DS) is used. You can download scenes from [Hypernerf Dataset](https://github.com/google/hypernerf/releases/tag/v0.1) & [NeRF-DS Dataset](https://github.com/JokerYan/NeRF-DS/releases/tag/v0.1-pre-release) and organize them as [Nerfies](https://github.com/google/nerfies#datasets). 
