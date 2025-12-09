@@ -24,7 +24,7 @@ pip install -e submodules/depth-diff-gaussian-rasterization
 pip install -e submodules/simple-knn
 ```
 
-In our environment, we use pytorch=1.13.1+cu116.
+We modified the "diff-gaussian-rasterization" in the submodule following [LightGaussian](https://github.com/VITA-Group/LightGaussian/) to get the Global Significant Score. In our environment, we use pytorch=1.13.1+cu116.
 
 ## Data Preparation
 
