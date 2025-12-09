@@ -42,8 +42,6 @@ The dataset provided in [HyperNeRF](https://github.com/google/hypernerf) and [Ne
 │     ├── standup 
 │     ├── ...
 │   | hypernerf (NeRF-DS)
-│     ├── interp
-│     ├── misc
 │     ├── virg
 │   | dynerf 
 │     ├── cook_spinach
