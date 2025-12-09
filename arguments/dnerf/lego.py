@@ -5,7 +5,7 @@ ModelHiddenParams = dict(
      'grid_dimensions': 2,
      'input_coordinate_dim': 4,
      'output_coordinate_dim': 32,
-     'resolution': [64, 64, 64, 25]
+     'resolution': [64, 64, 64, 20]
     },
 
     # deformation_lr_init = 0.001,
