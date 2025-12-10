@@ -88,28 +88,9 @@ chmod +x train_dnerf.sh
 ./train_dnerf.sh
 ```
 
-For training dynerf scenes such as `cut_roasted_beef`, run
-```python
-# First, extract the frames of each video.
-python scripts/preprocess_dynerf.py --datadir data/dynerf/cut_roasted_beef
-# Second, generate point clouds from input data.
-bash colmap.sh data/dynerf/cut_roasted_beef llff
-# Third, downsample the point clouds generated in the second step.
-python scripts/downsample_point.py data/dynerf/cut_roasted_beef/colmap/dense/workspace/fused.ply data/dynerf/cut_roasted_beef/points3D_downsample2.ply
-# Finally, train.
-python train.py -s data/dynerf/cut_roasted_beef --port 6017 --expname "dynerf/cut_roasted_beef" --configs arguments/dynerf/cut_roasted_beef.py 
-```
+Similarly, run `train_dynerf.sh` and `train_hyper.sh` for real-world scene tests.
 
 For training hypernerf or nerf-ds scenes such as `virg/broom`: Pregenerated point clouds by COLMAP are provided [here](https://drive.google.com/file/d/1fUHiSgimVjVQZ2OOzTFtz02E9EqCoWr5/view). Just download them and put them in to correspond folder, and you can skip the former two steps. Also, you can run the commands directly.
-
-```python
-# First, computing dense point clouds by COLMAP
-bash colmap.sh data/hypernerf/virg/broom2 hypernerf
-# Second, downsample the point clouds generated in the first step. 
-python scripts/downsample_point.py data/hypernerf/virg/broom2/colmap/dense/workspace/fused.ply data/hypernerf/virg/broom2/points3D_downsample2.ply
-# Finally, train.
-python train.py -s  data/hypernerf/virg/broom2/ --port 6017 --expname "hypernerf/broom2" --configs arguments/hypernerf/broom2.py 
-```
 
 
 ## ⏰ Compression
