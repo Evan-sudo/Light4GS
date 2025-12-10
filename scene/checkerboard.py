@@ -919,36 +919,3 @@ class CheckerboardAutoregressive(JointAutoregressiveHierarchicalPriors):
         return decoded
 
 
-# ========================== 4D→6 平面，多尺度（分辨率增大） ==========================
-
-def build_hexplanes_combo_multiscale(
-    C=32, baseX=20, baseY=20, baseZ=20, baseT=20, num_scales=2, device="cuda"
-):
-    """
-    scale s 分辨率 = base * (2**s)，越高 scale 分辨率越大。
-    每个 scale 生成 6 个 plane:
-      0: XY  [1,C,Xs,Ys]
-      1: XZ  [1,C,Xs,Zs]
-      2: XT  [1,C,Xs,Ts]
-      3: YZ  [1,C,Ys,Zs]
-      4: YT  [1,C,Ys,Ts]
-      5: ZT  [1,C,Zs,Ts]
-    """
-    hexplanes = []
-    for s in range(num_scales):
-        factor = 2 ** s
-        Xs = baseX * factor
-        Ys = baseY * factor
-        Zs = baseZ * factor
-        Ts = baseT * factor
-
-        planes = [
-            torch.randn(1, C, Xs, Ys, device=device),  # 0: XY
-            torch.randn(1, C, Xs, Zs, device=device),  # 1: XZ
-            torch.randn(1, C, Xs, Ts, device=device),  # 2: XT
-            torch.randn(1, C, Ys, Zs, device=device),  # 3: YZ
-            torch.randn(1, C, Ys, Ts, device=device),  # 4: YT
-            torch.randn(1, C, Zs, Ts, device=device),  # 5: ZT
-        ]
-        hexplanes.append(planes)
-    return hexplanes
