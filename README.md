@@ -115,6 +115,8 @@ python train.py -s  data/hypernerf/virg/broom2/ --port 6017 --expname "hypernerf
 <p align="center">
   <img src="assets/RDO.png" alt="Rate–distortion comparison" width="800">
 </p>
+Compression performance. From left to right: D-NeRF, DyNeRF and HyperNeRF.
+
 
 ### 🌟 Feature compression:
 HEXPLANE is compressed using our context model, implemented on top of [CompressAI](https://github.com/InterDigitalInc/CompressAI), where an entropy constraint is applied every 3 iterations.  
