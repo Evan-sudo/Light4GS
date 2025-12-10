@@ -28,7 +28,7 @@ pip install -e submodules/depth-diff-gaussian-rasterization
 pip install -e submodules/simple-knn
 ```
 
-We modified the "diff-gaussian-rasterization" in the submodule following [LightGaussian](https://github.com/VITA-Group/LightGaussian/) to get the Global Significant Score. In our environment, we use pytorch=1.13.1+cu116.
+We modified the "diff-gaussian-rasterization" in the submodule following [LightGaussian](https://github.com/VITA-Group/LightGaussian) to get the Global Significant Score. In our environment, we use pytorch=1.13.1+cu116.
 
 ## 📚 Data Preparation
 
@@ -146,4 +146,6 @@ Also see our anchor-based compression solution for 4DGS [ADC-GS](https://github.
       booktitle = {Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence (IJCAI)},
       year      = {2025}
     }
-
+    
+## ♻️ Acknowledgement
+We gratefully acknowledge [4DGS](https://github.com/hustvl/4DGaussians) as the foundation of our work, and we drew inspiration from [LightGaussian](https://github.com/VITA-Group/LightGaussian) and [CNC](https://github.com/YihangChen-ee/CNC).
