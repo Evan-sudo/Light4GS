@@ -84,7 +84,8 @@ The training of Light4GS follows the implementation of the paper [4DGS](https://
 For training synthetic scenes such as `bouncingballs`, run
 
 ```
-python train.py -s data/dnerf/bouncingballs --port 6017 --expname "dnerf/bouncingballs" --configs arguments/dnerf/bouncingballs.py 
+chmod +x train_dnerf.sh
+./train_dnerf.sh
 ```
 
 For training dynerf scenes such as `cut_roasted_beef`, run
