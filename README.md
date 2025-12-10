@@ -76,6 +76,8 @@ The dataset provided in [HyperNeRF](https://github.com/google/hypernerf) and [Ne
   
 - The model-saving iteration should include the **final training iteration**, which stores the decoded 4DGS model.
 
+- The current version does not include adaptive quantization, as it does not work stably across all scenes.
+
 ## 🚀 Training
 
 The training of Light4GS follows the implementation of the paper [4DGS](https://github.com/hustvl/4DGaussians).
