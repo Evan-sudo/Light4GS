@@ -138,7 +138,7 @@ If you find our work helpful, please cite:
       year    = {2025}
     }
 
-Also see our coarse-to-fine compression solution for 4DGS [ADC-GS](https://github.com/H-Huang774/ADC-GS):
+Also see our anchor-based compression solution for 4DGS [ADC-GS](https://github.com/H-Huang774/ADC-GS):
 
     @inproceedings{huang2025adcgs,
       title     = {ADC-GS: Anchor-Driven Deformable and Compressed Gaussian Splatting for Dynamic Scene Reconstruction},
