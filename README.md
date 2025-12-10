@@ -88,7 +88,7 @@ chmod +x train_dnerf.sh
 ./train_dnerf.sh
 ```
 
-Similarly, run `train_dynerf.sh` and `train_hyper.sh` for real-world scene tests.
+Similarly, run `train_dynerf.sh`, `train_hyper.sh` and `train_nerfds.sh` for real-world scene tests.
 
 For training hypernerf or nerf-ds scenes such as `virg/broom`: Pregenerated point clouds by COLMAP are provided [here](https://drive.google.com/file/d/1fUHiSgimVjVQZ2OOzTFtz02E9EqCoWr5/view). Just download them and put them in to correspond folder, and you can skip the former two steps. Also, you can run the commands directly.
 
