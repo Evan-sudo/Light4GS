@@ -70,9 +70,11 @@ The dataset provided in [HyperNeRF](https://github.com/google/hypernerf) and [Ne
 ```
 ### ‼️ Note:
 
-- To ensure valid masked convolution under the checkerboard context, we set all HexPlane dimensions in ./arguments to be multiples of 4. 
+- To ensure valid masked convolution under the checkerboard context, we set all HexPlane dimensions in ./arguments to be **multiples of 4**. 
 
-- The pruning iteration should also be later than the iteration at which the Gaussians stop densifying.
+- The **pruning iteration** should also be later than the iteration at which the Gaussians stop densifying.
+  
+- The model-saving iteration should include the **final training iteration**, which stores the decoded 4DGS model.
 
 ## 🚀 Training
 
@@ -119,7 +121,7 @@ HEXPLANE is compressed using our context model, implemented on top of [CompressA
 - We utimize spatio-temporal rendering significance to prune deformable Gaussian primitives, with the pruning iteration set to [13000, 17000] by default.  
 - The AC components of the SH coefficients are compressed with a fully factorized entropy model, and likewise use an entropy constraint every 3 iterations.  
 
-Compression and decompression are evaluated every 10,000 iterations.  
+Compression and decompression are evaluated every 10,000 iterations. Bitstreams are stored in ./bitstream (including SH AC and Hexplanes).
 
 ### 🌟 Validation and Evaluation:
 The model-saving iteration should include the **final training iteration**, which stores the decoded 4DGS model. This decoded model is identical to the one in [4DGS](https://github.com/hustvl/4DGaussians), so you can directly use the original 4DGS scripts for rendering, FPS measurement, and metric evaluation.
