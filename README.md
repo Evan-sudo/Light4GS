@@ -70,9 +70,9 @@ The dataset provided in [HyperNeRF](https://github.com/google/hypernerf) and [Ne
 ```
 ### ‼️ Note:
 
--To ensure valid masked convolution under the checkerboard context, we set all HexPlane dimensions in ./arguments to be multiples of 4. 
+- To ensure valid masked convolution under the checkerboard context, we set all HexPlane dimensions in ./arguments to be multiples of 4. 
 
--The pruning iteration should also be later than the iteration at which the Gaussians stop densifying.
+- The pruning iteration should also be later than the iteration at which the Gaussians stop densifying.
 
 ## 🚀 Training
 
