@@ -784,7 +784,7 @@ if __name__ == "__main__":
     parser.add_argument("--configs", type=str, default="")
 
     # prune configuration
-    parser.add_argument("--prune_iterations", nargs="+", type=int, default=[13000, 17000])
+    parser.add_argument("--prune_iterations", nargs="+", type=int, default=[15000, 18000])
     parser.add_argument(
         "--prune_type", type=str, default="important_score"
     )
