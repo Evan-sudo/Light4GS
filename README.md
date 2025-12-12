@@ -1,10 +1,5 @@
 # Light4GS: Lightweight Compact 4D Gaussian Splatting Generation via Context Model
 
-Mufan Liu¹, Qi Yang², He Huang¹, Wenjie Huang¹, Zhenlong Yuan³, Zhu Li², Yiling Xu¹†  
-
-¹ Shanghai Jiao Tong University  
-² University of Missouri, Kansas City  
-³ University of Chinese Academy of Sciences  
 
 Contact: sudo_evan@sjtu.edu.cn
 
