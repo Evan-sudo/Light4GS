@@ -68,8 +68,7 @@ class CheckerboardAutoregressive(JointAutoregressiveHierarchicalPriors):
             stride=1,
         )
 
-        # cross-plane / cross-scale context -> 变成 (2M) 作为高斯参数基础
-        # !!! 修改 1：in_channels 从 2M 改成 M，out_channels 还是 2M
+
         self.context_to_params = nn.Conv2d(
             in_channels=M,
             out_channels=2 * M,
@@ -79,9 +78,6 @@ class CheckerboardAutoregressive(JointAutoregressiveHierarchicalPriors):
         )
 
     def get_parameters(self):
-        """
-        你之前是直接把所有参数丢进去训练，这里保持一致。
-        """
         parameter_list = []
         for name, param in self.named_parameters():
             parameter_list.append(param)
@@ -278,7 +274,7 @@ class CheckerboardAutoregressive(JointAutoregressiveHierarchicalPriors):
             "likelihoods": {"y": y_lkl, "z": z_lkl},
         }
 
-    # ====================== 训练时 bits（统一 noise 版） ======================
+    # ====================== 训练时 bits ======================
 
     def calculate_hexplane_bits(self, hexplanes, Q):
         """
