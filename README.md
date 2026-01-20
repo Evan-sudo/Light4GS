@@ -1,4 +1,4 @@
-# Light4GS: Lightweight Compact 4D Gaussian Splatting Generation via Context Model
+# [TCSVT 25']Light4GS: Lightweight Compact 4D Gaussian Splatting Generation via Context Model
 
 
 Contact: sudo_evan@sjtu.edu.cn
